@@ -1,0 +1,43 @@
+<%- include('header.ejs') %>
+
+<section class="weatherSection">
+    <div class="weatherContainer">
+        <div class="weatherHeading">
+            <p><a href="http://localhost:3000">Weather Forecast</a></p>
+        </div>
+       
+        <% if (result && result.weather && result.weather[0] && result.weather[0].main) { %>
+            
+            <% const status = {
+                "Clear": "day.svg",
+                "Clouds": "cloudy-day-1.svg",
+                "Rain": "rainy-1.svg",
+                "Snow": "snowy-1.svg",
+                "Thunderstorm": "thunder.svg",
+                "Haze": "day.svg",
+                "Mist": "day.svg",
+                "Smoke": "day.svg",
+                "Dust": "day.svg",
+                "Tornado": "thunder.svg"
+            }; %>
+
+            <div class="weatherInformation">
+                <img src="images/<%= status[result.weather[0].main] %>" alt="image">
+                <p class="temp"><%= result.main.temp %>C</p>
+                <!-- <p class="cloudStatus"><%= result.clouds.all %></p> -->
+                <p class="location"><%= result.name %>, <%= result.sys.country %></p>
+            </div>
+        
+            <% } else { %>
+            <p>No weather information available</p>
+        <% } %>
+
+        
+        <div class="weatherFooter">
+            <p class="windSpeed"><%= result.wind.speed %> Km/h</p>
+            <p class="humidity"><%= result.main.humidity %></p>
+        </div>
+    </div>
+</section>
+
+<%- include('footer.ejs') %>
