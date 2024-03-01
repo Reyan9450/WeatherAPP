@@ -36,6 +36,10 @@ app.post("/submit", async (req, res) => {
     }
 });
 
+app.get("/redirect", (req, res) => {
+    res.redirect("/");
+});
+
 
 
 app.listen(port, () => console.log(`Server started at port ${port}`));
